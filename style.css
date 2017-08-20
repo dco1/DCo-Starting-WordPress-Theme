@@ -7,7 +7,7 @@ Version: 1.0
 
 */
 
-@import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
 /* Resets and Boilerplates  */
     * {  margin:0;  padding:0;  border:0;  outline:0;  font-size:100%;  vertical-align:baseline;  background:transparent;}                  
@@ -40,7 +40,8 @@ Version: 1.0
     input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
     button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; } /* Remove inner padding and border in FF3/4: h5bp.com/l */
     textarea { overflow: auto; vertical-align: top; resize: vertical; } /* * 1. Remove default vertical scrollbar in IE6/7/8/9 * 2. Allow only vertical resizing */
-
+    
+    .button {line-height:1;}
 
     .hide {display:none !important; visibility: hidden;}
     hr.foot {border:0px;clear: both;display: block;	overflow: hidden;visibility: hidden;width: 0px; margin:0;padding:0;	height: 0px;}
@@ -63,12 +64,12 @@ Version: 1.0
     a { color: #333; }
     a:hover {}
                 
-    img, embed, iframe, object { max-width: 100%; }
+    img, embed, iframe, object { max-width: 100%; height:auto;}
                     
-    body { color:#333; }
+    body { color:#333; background:white; }
 
 /* Layout */    
-    #container { margin:0 auto; }
+    #container { margin:0 auto; padding:1.6rem; }
 
 
 /* Header */
@@ -87,11 +88,11 @@ Version: 1.0
 /* Article Style */
     article {}
     .article-header {}
-        .article-header .article-title { font-size:120%; }
+        .article-header .article-title { font-size:1.2rem; }
     .article-content { clear:both; }
         .article-content p, .article-content ul, .article-content ol, .article-content blockquote, .article-content img { margin-bottom:1em; }
         .article-content p {}
-        .article-content ul , .article-content ol {padding-left:20px;}
+        .article-content ul , .article-content ol {padding-left:2em;}
         .article-content blockquote {}
         .article-content img { max-width:100%; }
             .article-content img.alignleft { margin:0 1em 1em 0; }
@@ -113,3 +114,29 @@ Version: 1.0
                 footer nav ul {}
                     footer nav ul li {}
                         footer nav ul li a {}
+
+
+
+/* Media Queries */
+
+/* > 950px, 950px - 720px, < 720px , < 480px */
+
+@media ( min-width: 950px ) {
+
+}
+
+
+@media ( max-width: 950px ) and ( min-width: 720px ) {
+
+
+}
+
+@media ( max-width: 720px )  {
+	
+
+}
+
+@media ( max-width: 480px )  {
+
+
+}
