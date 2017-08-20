@@ -1,0 +1,115 @@
+/*
+Theme Name: Starting Wordpress Theme
+
+Author: Danny Cohen
+Author URI: http://dannycohen.design/
+Version: 1.0
+
+*/
+
+@import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+/* Resets and Boilerplates  */
+    * {  margin:0;  padding:0;  border:0;  outline:0;  font-size:100%;  vertical-align:baseline;  background:transparent;}                  
+    article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+    audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+    audio, canvas, iframe, img, svg, video { vertical-align: middle; }
+
+    audio:not([controls]) { display: none; }
+    [hidden] { display: none; }
+    
+    html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; color: #222; font-size: 1em; line-height: 1.4;}
+    
+    h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+    
+    a {text-decoration:none; outline: none;}
+    a:hover, a:active { outline: 0; }
+    
+    img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+/* FORMS */
+
+    label { cursor: pointer; }
+    button[disabled], input[disabled] { cursor: default; }
+    
+    button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
+    
+    /* * Consistent box sizing and appearance */
+    input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
+    input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+    input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+    button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; } /* Remove inner padding and border in FF3/4: h5bp.com/l */
+    textarea { overflow: auto; vertical-align: top; resize: vertical; } /* * 1. Remove default vertical scrollbar in IE6/7/8/9 * 2. Allow only vertical resizing */
+
+
+    .hide {display:none !important; visibility: hidden;}
+    hr.foot {border:0px;clear: both;display: block;	overflow: hidden;visibility: hidden;width: 0px; margin:0;padding:0;	height: 0px;}
+
+/* Contain floats: h5bp.com/q */
+    .clearfix:before, .clearfix:after { content: ""; display: table; }
+    .clearfix:after { clear: both; }
+    .clearfix { *zoom: 1; }
+
+
+/* Site Styling */
+    ::-moz-selection { color:rgba(255,255,255,.8); background:#000;  text-shadow: none;}
+         ::selection { color:rgba(255,255,255,.8); background:#000;  text-shadow: none;}
+                        a:link { -webkit-tap-highlight-color: #000;  text-shadow: none;} 
+     
+    .left, .alignleft {float:left;}
+    .right, .alignright {float:right;}
+    .aligncenter {margin:0 auto; display:block;}
+    
+    a { color: #333; }
+    a:hover {}
+                
+    img, embed, iframe, object { max-width: 100%; }
+                    
+    body { color:#333; }
+
+/* Layout */    
+    #container { margin:0 auto; }
+
+
+/* Header */
+    header {}
+    
+    header h1 {}
+        header h1 a { display:block; overflow:hidden; text-indent:-99999px; }
+    
+    header nav {}
+        header nav ul {}
+            header nav li {}
+                header nav a  {}
+    
+    #main {}
+
+/* Article Style */
+    article {}
+    .article-header {}
+        .article-header .article-title { font-size:120%; }
+    .article-content { clear:both; }
+        .article-content p, .article-content ul, .article-content ol, .article-content blockquote, .article-content img { margin-bottom:1em; }
+        .article-content p {}
+        .article-content ul , .article-content ol {padding-left:20px;}
+        .article-content blockquote {}
+        .article-content img { max-width:100%; }
+            .article-content img.alignleft { margin:0 1em 1em 0; }
+            .article-content img.alignright { margin:0 0 1em 1em; }
+    .article-footer { clear:both; }
+
+
+/* Forms */
+    
+    form {}
+        form fieldset {}
+        form label {display:block;}
+        form input, form textarea { font-family:inherit; background:white; }
+        form input[type="submit"] { }
+
+/* Footer */
+        footer {}
+            footer nav {}
+                footer nav ul {}
+                    footer nav ul li {}
+                        footer nav ul li a {}
