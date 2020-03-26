@@ -94,7 +94,7 @@ function dco_header_tags(){ ?>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="<?php bloginfo('description'); ?>" />
-        <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
 
 <?php
 }

@@ -82,6 +82,9 @@ Version: 1.0
         header nav ul {}
             header nav li {}
                 header nav a  {}
+                
+        #toggle-mobile-nav {display: none; pointer-events: none;}
+
     
     #main {}
 
@@ -137,6 +140,22 @@ Version: 1.0
 }
 
 @media ( max-width: 480px )  {
+
+
+		header nav {position: absolute; top:0; width:100vw; height:100vh; max-height:100vh; z-index:100; background:rgba(0,0,0, 0.75);overflow-y: scroll; box-sizing: border-box; right:0px;  opacity: 0;   transition: all 0.3s ease; }
+		body.navigationShown {position: fixed; overflow: hidden;}
+				body.navigationShown header nav { right:0; opacity: 1;}
+			header nav ul {display: block; font-size:26px; line-height: 1.7;  padding:10px 20px;  position: relative;  transition: all 0.3s ease; left:300vw; box-sizing: 	border-box;}
+				body.navigationShown header nav ul {left:0;}
+			
+			#toggle-mobile-nav {display: block; pointer-events: all; position: absolute; top:0; right:0; line-height: 42px; vertical-align: middle; padding: 12px 20px; overflow: hidden; z-index:9999;}
+			
+			g#Hamburger line {transition: all 0.3s ease; transform: rotate(0deg);  transform-origin: 14% 50%; position: relative; }
+			.navigationShown g#Hamburger line { /* stroke:#fff; */ position: fixed;}
+				.navigationShown g#Hamburger:hover {opacity: .8;}
+				.navigationShown g#Hamburger #Line1 {  transform: rotate(45deg); }
+				.navigationShown g#Hamburger #Line2 {opacity: 0;}
+				.navigationShown g#Hamburger #Line3 { transform: rotate(-45deg); }
 
 
 }

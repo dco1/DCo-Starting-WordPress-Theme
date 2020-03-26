@@ -1,0 +1,13 @@
+<svg width="27px" height="27px" viewBox="0 0 37 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Article-Mock-Up" transform="translate(-958.000000, -70.000000)" stroke="#FFFFFF" stroke-width="3">
+            <g id="Header" transform="translate(30.000000, 41.000000)">
+                <g id="Hamburger" transform="translate(930.000000, 30.074074)">
+                    <line x1="32.597561" y1="0.518518519" x2="0.402439024" y2="0.518518519" id="Line1"></line>
+                    <line x1="32.597561" y1="11.9259259" x2="0.402439024" y2="11.9259259" id="Line2"></line>
+                    <line x1="32.597561" y1="23.3333333" x2="0.402439024" y2="23.3333333" id="Line3"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
