@@ -1,0 +1,11 @@
+    body { color: #333; background: #fff; font-size: 21px; font-family: "Georgia", serif; }
+    
+    h1, h2, h3, h4, h5, h6 { font-family: "Helvetica"; margin-bottom: 1.6rem; line-height: 1;}
+    
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.8rem; }
+    h3 { font-size: 2.3rem; }
+    h4 { font-size: 2.0rem; }
+    h5 { font-size: 1.7rem; }
+    h6 { font-size: 1.3rem; }
+

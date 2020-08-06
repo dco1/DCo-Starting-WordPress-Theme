@@ -7,9 +7,15 @@
 /* BASE FUNCTIONS */
 ///////////////////
 
+    // And any custom admin css
+    add_action( 'admin_enqueue_scripts', 'dco_admin_styles' );
+    function dco_admin_styles() {
+            wp_register_style( 'custom_wp_admin_css', get_bloginfo( 'stylesheet_directory' ) . '/admin_style.css', false, '1.0.0' );
+            wp_enqueue_style( 'custom_wp_admin_css' );
+    }
 
     add_action( 'after_setup_theme', 'dco_theme_setup' );
-    if ( ! function_exists( 'dco_theme_setup' ) ) :
+    if ( ! function_exists( 'dco_theme_setup' ) ) {
         function dco_theme_setup(){
             // Enable thumbnails
             add_theme_support( 'post-thumbnails' );
@@ -18,7 +24,7 @@
             register_sidebars();
             
             // HTML5 Search Form
-            add_theme_support( 'html5', array( 'search-form' ) );
+			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
             
             // Let's register some navigation menus
             if ( function_exists( 'register_nav_menus' ) ) {
@@ -31,25 +37,86 @@
             	);
             }
             
-            //Maybe we want our default oembed size something different from the default. This is where we can set it.
-            //add_filter('embed_defaults','dco_themename_embed_defaults');
-            function dco_themename_embed_defaults($defaults) {
-               $defaults['width'] = 640;
-               return $defaults;
-            }
+            //Title Tag
+            add_theme_support( 'title-tag' );
+
             
+			// Block Editor Support
            
-            
-            // And any custom admin css
-            add_action( 'admin_enqueue_scripts', 'dco_admin_styles' );
-            function dco_admin_styles( ) {
-                    wp_register_style( 'custom_wp_admin_css', get_bloginfo( 'stylesheet_directory' ) . '/admin_style.css', false, '1.0.0' );
-                    wp_enqueue_style( 'custom_wp_admin_css' );
-            }
+          	add_theme_support( 'align-wide' );
+          	add_theme_support( 'editor-styles' );
+          	add_editor_style( 'editor-style.css' );
+
+           
+			add_theme_support( 'editor-color-palette', dco_wp_block_editor_custom_colors_setup() );
+                
             
         
         }
-    endif; // dco_theme_setup()
+    } // dco_theme_setup()
+    
+    add_filter( 'dco_wp_block_editor_custom_colors', 'dco_wp_block_editor_custom_colors_defaults', 1, 1 );
+    function dco_wp_block_editor_custom_colors_defaults($colors){
+	    return array(	 
+	    	'Strong Red' => '#D80D04',
+	    	'Orange'     => '#FB7D03',
+	    	'Light Gray' => '#B2B8B2',
+	    	'Dark Gray'  => "#444444"
+	    );
+    }
+    
+    function dco_wp_block_editor_custom_colors_setup(){
+	    
+	    $colors = apply_filters( 'dco_wp_block_editor_custom_colors', array() );
+	    
+	    $return_array = array();
+	    
+	    foreach( $colors as $name => $hexcode){
+		    $return_array[] = array(
+			    'name' => __( $name, 'dco_theme' ),
+			    'slug' => sanitize_title($name),
+			    'color' => $hexcode,
+		    );
+	    }
+	    
+	    return $return_array;
+    }
+   
+     
+    
+    // Customizer! //
+    
+    add_filter( 'dco_wp_block_editor_custom_colors', 'dco_wp_block_editor_custom_colors_for_customizer' , 10, 1);
+    function dco_wp_block_editor_custom_colors_for_customizer($colors){
+	    foreach( $colors as $name => $hexcode ){
+	    	$colors[$name] = get_theme_mod( sanitize_title( $name ), $hexcode );
+	    }
+	    return $colors;
+    }
+    
+    // Uncomment for the color customizer
+    //add_action('customize_register','dco_theme_customize_register');
+	function dco_theme_customize_register( $wp_customize ){
+		
+		$colors = apply_filters( 'dco_wp_block_editor_custom_colors', array() );
+		
+		foreach($colors as $name => $hexcode ){
+			$wp_customize->add_setting(  sanitize_title( $name ) , array(
+				'default' => $hexcode,
+				'sanitize_callback' => 'sanitize_hex_color',
+			));
+			
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize,  sanitize_title( $name ) , array(
+				'label' =>   "Editor - " .  $name ,
+				'section' => 'colors',
+				'settings' =>   sanitize_title( $name ) ,
+				'capability' => 'edit_theme_options',
+			) ) );
+		}
+		
+
+	}
+	
 
 /**
  * Filters wp_title to print a neat <title> tag based on what is being viewed.
@@ -58,7 +125,8 @@
  * @param string $sep Optional separator.
  * @return string The filtered title.
  */
-	function _s_wp_title( $title, $sep ) {
+ 	add_filter( 'wp_title', 'dco_s_wp_title', 10, 2 );
+	function dco_s_wp_title( $title, $sep ) {
 	    if ( is_feed() ) {
 	    	return $title;
 	    }
@@ -76,7 +144,6 @@
 	    }
 	    return $title;
 	}
-	add_filter( 'wp_title', '_s_wp_title', 10, 2 );
 
 // The header
 
@@ -89,27 +156,30 @@
 	<?php
 	}
 
-// Call Googles HTML5 Shim, but only for users on old versions of IE
-	add_action('wp_head', 'dco_wpfme_IEhtml5_shim');
-	function dco_wpfme_IEhtml5_shim() {
-		global $is_IE;
-		if ( $is_IE ) echo '<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->';
-	}
-
 
 // Add a post thumbnail column, please
 	add_filter('manage_posts_columns', 'dco_add_post_thumb_posts_columns', 5);
 	add_action('manage_posts_custom_column', 'dco_add_post_thumb_posts_custom_columns', 5, 2);
 	function dco_add_post_thumb_posts_columns($defaults){
 	   unset( $defaults['cb'] );
-	   return  array( 'cb' => '',  'post_thumbs' => __('') ) + $defaults;
+	   return array( 'cb' => '',  'post_thumbs' => __('') ) + $defaults;
 	}
 	function dco_add_post_thumb_posts_custom_columns($column_name, $id){
-	        if ( $column_name === 'post_thumbs' ) {
+	    if ( $column_name === 'post_thumbs' ) {
+		    add_filter('post_thumbnail_html', 'dco_post_thumbnail_html_filter_for_empty_thumbnail', $html);
 	        echo '<a href="'. get_edit_post_link( $id, '&') .'">' .  get_the_post_thumbnail( $id, array(96,96) ) . '</a>';
 	    }
 	}
-
+	
+	function dco_post_thumbnail_html_filter_for_empty_thumbnail($html){
+		if (!empty($html)) {
+			return $html;
+		} else {
+			return '<span class="empty_thumbnail"></span>';
+		}
+		
+	}
+	
 
 
 
@@ -182,4 +252,39 @@
 	        if ( current_user_can( 'manage_options' ) ) pre_print( $content );
 	    }
 	endif;
+	
+	
+	add_action( 'after_setup_theme', 'dco_theme_setup_starter_content' );
+	function dco_theme_setup_starter_content(){
+		add_theme_support( 'starter-content', array(
+		    	// Place widgets in the desired locations (such as sidebar or footer).
+		    	// Example widgets: archives, calendar, categories, meta, recent-comments, recent-posts, 
+		    	//                  search, text_business_info, text_about
+		    	'widgets'     => array( 'sidebar-1' => array( 'search', 'categories', 'meta'), ),
+		    	// Specify pages to create, and optionally add custom thumbnails to them.
+		    	// Note: For thumbnails, use attachment symbolic references in {{double-curly-braces}}.
+		    	// Post options: post_type, post_title, post_excerpt, post_name (slug), post_content, 
+		    	//               menu_order, comment_status, thumbnail (featured image ID), and template
+		    	'posts'       => array( 'home' => array('post_content' => 'This is the homepage'), 'about', 'blog', ),
+		    	// Create custom image attachments used as post thumbnails for pages.
+		    	// Note: You can reference these attachment IDs in the posts section above. Example: {{image-cafe}}
+		    	//'attachments' => array( 'image-cafe' => array( 'post_title' => 'Cafe', 'file' => 'assets/images/cafe.jpg' ), ),
+		    	// Assign options defaults, such as front page settings.
+		    	// The 'show_on_front' value can be 'page' to show a specified page, or 'posts' to show your latest posts.
+		    	// Note: Use page ID symbolic references from the posts section above wrapped in {{double-curly-braces}}.
+		    	'options'     => array( 'show_on_front'  => 'page', 'page_on_front' => '{{home}}', 'page_for_posts' => '{{blog}}', ),
+		    	// Set up nav menus.
+		    	'nav_menus'   => array(
+		    		'main_menu' => array( 'name' => 'Main Menu', 'items' => array( 'link_home', 'page_about', 'page_blog' )),
+		    		'social_menu' => array( 'name'  => 'Social Links Menu', 'items' => array( 'link_facebook', 'link_twitter', 'link_instagram')),
+		    		 )
+		    	
+		    ));
+
+	}	
+
+
+
+	
+	
 ?>

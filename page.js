@@ -1,4 +1,4 @@
-$(document).ready(function() {
+(function($) {
 	
 // Show our site navigation bar
 	$("#toggle-mobile-nav").click(function( event ) {
@@ -12,4 +12,4 @@ $(document).ready(function() {
     	}
 	});
 
-});
+})( jQuery );
