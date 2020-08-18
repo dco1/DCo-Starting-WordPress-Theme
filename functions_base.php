@@ -266,6 +266,7 @@
 	
 
 /* Helper Functions */
+
 	if ( ! function_exists( 'pre_print' ) ) :
 	    function pre_print( $content ){
 	        echo '<pre style="">'; print_r($content); echo '</pre>';
@@ -283,7 +284,7 @@
 	        if ( current_user_can( 'manage_options' ) ) pre_print( $content );
 	    }
 	endif;
-	
+
 	
 	//add_action( 'after_setup_theme', 'dco_theme_setup_starter_content' );
 	function dco_theme_setup_starter_content(){

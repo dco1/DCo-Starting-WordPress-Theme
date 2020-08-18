@@ -1,5 +1,11 @@
 <?php
 include('functions_base.php');
+
+add_filter( 'wp_get_environment_type', 'dco_theme_environment_type' );
+function dco_theme_environment_type( $current_env ) {
+	//return "production";
+	return "development";
+}
 	
 ////////////////
 // Mobile Nav //
