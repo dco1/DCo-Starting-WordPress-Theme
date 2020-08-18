@@ -4,8 +4,28 @@
 	function dco_add_credits(){ echo "<!-- This site was designed and coded by Danny Cohen - dannycohen.design -->";}
 
 ////////////////////
-/* BASE FUNCTIONS */
+// BASE FUNCTIONS //
 ///////////////////
+
+
+	///////////////////////////////////////     
+	// Front end Stylesheets and Scripts //
+	///////////////////////////////////////
+	
+	add_action('wp_enqueue_scripts', 'dco_theme_add_client_script_and_styles'); // Enqueue some scripts we'll be needing
+	function dco_theme_add_client_script_and_styles() {
+	    if ( is_admin() ) return;
+	    
+	    wp_enqueue_script( 'page-js', get_theme_file_uri( 'page.js') , array('jquery'), time(), true); // Let's register the page.js
+	    wp_enqueue_style( 'main_style', get_bloginfo( 'stylesheet_url' ) , null, time() ); // Let's add our stylesheet from the functions.php
+	    
+	    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )   wp_enqueue_script( 'comment-reply' );
+
+	}
+	
+	///////////////
+	// ADMIN CSS //
+	///////////////
 
     // And any custom admin css
     add_action( 'admin_enqueue_scripts', 'dco_admin_styles' );
@@ -13,6 +33,10 @@
             wp_register_style( 'custom_wp_admin_css', get_bloginfo( 'stylesheet_directory' ) . '/admin_style.css', false, '1.0.0' );
             wp_enqueue_style( 'custom_wp_admin_css' );
     }
+
+	/////////////////
+	// THEME SETUP //
+	/////////////////
 
     add_action( 'after_setup_theme', 'dco_theme_setup' );
     if ( ! function_exists( 'dco_theme_setup' ) ) {
@@ -39,14 +63,12 @@
             
             //Title Tag
             add_theme_support( 'title-tag' );
-
             
 			// Block Editor Support
            
           	add_theme_support( 'align-wide' );
           	add_theme_support( 'editor-styles' );
           	add_editor_style( 'editor-style.css' );
-
            
 			add_theme_support( 'editor-color-palette', dco_wp_block_editor_custom_colors_setup() );
                 
@@ -55,15 +77,7 @@
         }
     } // dco_theme_setup()
     
-    add_filter( 'dco_wp_block_editor_custom_colors', 'dco_wp_block_editor_custom_colors_defaults', 1, 1 );
-    function dco_wp_block_editor_custom_colors_defaults($colors){
-	    return array(	 
-	    	'Strong Red' => '#D80D04',
-	    	'Orange'     => '#FB7D03',
-	    	'Light Gray' => '#B2B8B2',
-	    	'Dark Gray'  => "#444444"
-	    );
-    }
+
     
     function dco_wp_block_editor_custom_colors_setup(){
 	    
@@ -82,6 +96,16 @@
 	    return $return_array;
     }
    
+	// Some default custom colors for the block editor. 
+	add_filter( 'dco_wp_block_editor_custom_colors', 'dco_wp_block_editor_custom_colors_defaults', 1, 1 );
+    function dco_wp_block_editor_custom_colors_defaults($colors){
+	    return array(	 
+	    	'Strong Red' => '#D80D04',
+	    	'Orange'     => '#FB7D03',
+	    	'Light Gray' => '#B2B8B2',
+	    	'Dark Gray'  => "#444444"
+	    );
+    }
      
     
     // Customizer! //
@@ -145,10 +169,11 @@
 	    return $title;
 	}
 
+
 // The header
 
-	add_action('wp_head', 'dco_header_tags');
-	function dco_header_tags(){ ?>
+	add_action('wp_head', 'dco_theme_header_tags');
+	function dco_theme_header_tags(){ ?>
 	    <meta charset="<?php bloginfo( 'charset' ); ?>" />
 	    <meta http-equiv="x-ua-compatible" content="ie=edge">
 	    <meta name="description" content="<?php bloginfo('description'); ?>" />
@@ -208,7 +233,7 @@
 	remove_action('wp_head', 'adjacent_posts_rel_link');
 
 
-// KILL RSS!!!!
+// DISABLE RSS!!!!
 //function fb_disable_feed() {
 //    wp_die( __('No feed available,please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
 //}
@@ -219,7 +244,7 @@
 //add_action('do_feed_atom', 'fb_disable_feed', 1);
 
 
-// I want an /edit end point added on to make my life easier
+// I want an /edit end point added on to make my life easier. So, just add /edit to the end of any url to get the post edit page in the backend.
 	add_action( 'init', 'dco_add_on_edit_permalink_point' );
 	function dco_add_on_edit_permalink_point() {
 		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES );
@@ -260,7 +285,7 @@
 	endif;
 	
 	
-	add_action( 'after_setup_theme', 'dco_theme_setup_starter_content' );
+	//add_action( 'after_setup_theme', 'dco_theme_setup_starter_content' );
 	function dco_theme_setup_starter_content(){
 		add_theme_support( 'starter-content', array(
 		    	// Place widgets in the desired locations (such as sidebar or footer).
