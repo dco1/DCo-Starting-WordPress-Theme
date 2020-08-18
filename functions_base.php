@@ -166,7 +166,7 @@
 	}
 	function dco_add_post_thumb_posts_custom_columns($column_name, $id){
 	    if ( $column_name === 'post_thumbs' ) {
-		    add_filter('post_thumbnail_html', 'dco_post_thumbnail_html_filter_for_empty_thumbnail', $html);
+		   // add_filter('post_thumbnail_html', 'dco_post_thumbnail_html_filter_for_empty_thumbnail', $html);
 	        echo '<a href="'. get_edit_post_link( $id, '&') .'">' .  get_the_post_thumbnail( $id, array(96,96) ) . '</a>';
 	    }
 	}
@@ -248,7 +248,13 @@
 	endif;
 	
 	if ( ! function_exists( 'admin_print' ) && function_exists( 'pre_print' ) ) :
-	    function admin_print( $content ){
+	    function admin_print( $content = ''){
+		    
+		    if ( empty( $content ) ) {
+			    $backtrace = debug_backtrace();
+			    $content = "<strong>Debug</strong> " . $backtrace[1]['function'] . " on Line " . $backtrace[0]['line'];
+			}
+		    
 	        if ( current_user_can( 'manage_options' ) ) pre_print( $content );
 	    }
 	endif;
