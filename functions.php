@@ -26,6 +26,16 @@ function dco_theme_environment_type( $current_env ) {
 	function dco_theme_svg_code($svg_filename){
 		return file_get_contents( get_template_directory() .  "/images/" . $svg_filename);
 	}
+	
+	// Replace Social Networks with their logos
+	add_filter('walker_nav_menu_start_el', 'dco_wp_nav_menu_social_menu_replace_text_with_svg_for_title', 10, 4);
+	function dco_wp_nav_menu_social_menu_replace_text_with_svg_for_title($item_output, $item, $depth, $args){
+		if ( $args->container_id == 'social-header-menu' ){
+			$item_output = str_replace( $item->title, dco_theme_svg_code(strtolower($item->title) . ".svg"), $item_output);
+		} 
+		return $item_output;
+		
+	}
 
 /////////////////////////////////////////
 // Article Header, Content, and Footer //

@@ -102,15 +102,23 @@ Requires at least: 5.4
 
 
 /* Header */
-    header {margin-bottom: var(--content-bottom-margin);}
+    header {margin-bottom: var(--content-bottom-margin); display: flex;}
     
     header h1 { width: calc(100% - var(--content-bottom-margin) ); font-size:2rem; margin-bottom var(--content-bottom-margin); }
         header h1 a { display:block; }
+    
+   header .header-menus {flex-grow: 1; justify-content: flex-end; display: flex; flex-wrap: wrap;}
     
     header nav {width: calc(100% - var(--content-bottom-margin) );  }
         header nav ul {display:flex; list-style: none; justify-content: flex-start; margin-left:-10px; /* If the final nav is left aligned */}
             header nav li {}
                 header nav a  {padding:10px; color:var(--main-text-color);}
+   
+   
+        header #social-header-menu .logopath {fill: var(--main-text-color);} 
+        header #social-header-menu a:hover .logopath {fill: var(--main-link-color);}  
+                header #social-header-menu a[href*="instagram"]:hover .logopath {fill: #a3069b;}  
+
                 
         #toggle-mobile-nav {display: none; pointer-events: none;}
         
