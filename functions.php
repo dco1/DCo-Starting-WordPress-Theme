@@ -66,3 +66,22 @@ function dco_theme_environment_type( $current_env ) {
 	function dco_theme_custom_colors( $colors ){
 		return array("Text Black" => "#333333");
 	}
+
+////////////////
+// Pagination //
+////////////////
+
+////////////////
+// Pagination //
+////////////////
+
+add_action('before_footer', 'dco_theme_page_pagination_links_in_footer');
+function dco_theme_page_pagination_links_in_footer(){
+	?>
+	<div class="navigation"><div class="content-wrapper">
+		<span class="previous-page"><?php previous_posts_link();?></span>
+		<span class="next-page"><?php next_posts_link(); ?></span>
+	</div></div>
+	<?php
+}
+

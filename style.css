@@ -262,6 +262,18 @@ Requires at least: 5.4
     .article-footer { clear:both; }
 
 
+/* Pagination */
+
+.navigation .content-wrapper {display: flex;  margin-top:  var(--content-bottom-margin); }
+.navigation .content-wrapper span {flex-grow: 1;}
+	.navigation .content-wrapper span.previous-page {text-align: left;  margin-left: -10px; }
+	.navigation .content-wrapper span.next-page {text-align: right; margin-right:-10px;}
+
+	.navigation .content-wrapper span a { padding:10px;transition: ease-out .3s background-color; color: var(--main-text-color);}
+	.navigation .content-wrapper span a:hover {background-color: var(--main-link-color);}
+	
+
+
 /* Forms */
     
     form {}
