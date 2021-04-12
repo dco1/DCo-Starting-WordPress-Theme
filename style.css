@@ -167,7 +167,7 @@ hr.foot {
   /* Headline */
   --headline-font-family: "Helvetica";
   /* Content */
-  --content-bottom-margin: 1.6rem;
+  --content-bottom-margin: 2.5rem;
   --content-font-family: "Georgia";
   --content-content-width: 680px;
   --content-font-weight: 300;
@@ -353,7 +353,7 @@ article {
   clear: both;
   margin: 0 auto;
   font-size: var(--main-font-size);
-  line-height: 1.7rem;
+  line-height: 1.75rem;
   font-weight: var(--content-font-weight);
 }
 .article-content p,
@@ -394,15 +394,13 @@ article {
 
 /* Alignment Classes ------------------------- */
 
-.article-content
-  > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+.article-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
   max-width: var(--content-content-width);
   margin: 0 auto var(--content-bottom-margin);
   width: calc(100% - var(--content-bottom-margin));
 }
 
-[class*="__inner-container"]
-  > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+[class*="__inner-container"] > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
   max-width: var(--main-content-width);
   width: 100%;
 }
@@ -415,8 +413,7 @@ article {
   margin: 0 auto var(--content-bottom-margin);
 }
 
-[class*="__inner-container"]
-  > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright) {
+[class*="__inner-container"] > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright) {
   margin-left: auto;
   margin-right: auto;
 }
@@ -467,43 +464,25 @@ article {
 .alignleft {
   /*rtl:ignore*/
   float: left;
-  margin: 0.3rem var(--content-bottom-margin) var(--content-bottom-margin)
-    var(--content-bottom-margin);
+  margin: 0.3rem var(--content-bottom-margin) var(--content-bottom-margin) var(--content-bottom-margin);
 }
 
 .alignright {
   /*rtl:ignore*/
   float: right;
-  margin: 0.3rem var(--content-bottom-margin) var(--content-bottom-margin)
-    var(--content-bottom-margin);
+  margin: 0.3rem var(--content-bottom-margin) var(--content-bottom-margin) var(--content-bottom-margin);
 }
 
-[class*="wp-block"].alignfull:not(.has-background)
-  [class*="__inner-container"]
-  > .alignleft,
-[class*="wp-block"].alignfull:not(.has-background)
-  [class*="__inner-container"]
-  > p
-  .alignleft,
-[class*="wp-block"].alignfull:not(.has-background)
-  [class*="__inner-container"]
-  > .wp-block-image
-  .alignleft {
+[class*="wp-block"].alignfull:not(.has-background) [class*="__inner-container"] > .alignleft,
+[class*="wp-block"].alignfull:not(.has-background) [class*="__inner-container"] > p .alignleft,
+[class*="wp-block"].alignfull:not(.has-background) [class*="__inner-container"] > .wp-block-image .alignleft {
   /*rtl:ignore*/
   margin-left: var(--content-bottom-margin);
 }
 
-[class*="wp-block"].alignfull:not(.has-background)
-  [class*="__inner-container"]
-  > .alignright,
-[class*="wp-block"].alignfull:not(.has-background)
-  [class*="__inner-container"]
-  > p
-  .alignright,
-[class*="wp-block"].alignfull:not(.has-background)
-  [class*="__inner-container"]
-  > .wp-block-image
-  .alignright {
+[class*="wp-block"].alignfull:not(.has-background) [class*="__inner-container"] > .alignright,
+[class*="wp-block"].alignfull:not(.has-background) [class*="__inner-container"] > p .alignright,
+[class*="wp-block"].alignfull:not(.has-background) [class*="__inner-container"] > .wp-block-image .alignright {
   /*rtl:ignore*/
   margin-right: var(--content-bottom-margin);
 }
@@ -609,14 +588,13 @@ footer nav ul li a {
   header nav {
     position: fixed;
     top: 0;
-    left:0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
     z-index: 100;
     pointer-events: none;
-    opacity:0;
-
+    opacity: 0;
   }
   body.navigationShown {
     overflow: hidden;
@@ -638,17 +616,17 @@ footer nav ul li a {
     right: 0px;
     opacity: 0;
     transition: all 0.3s ease;
-    display:flex; 
+    display: flex;
     flex-wrap: wrap;
-    pointer-events:none;
+    pointer-events: none;
   }
   body.navigationShown header nav ul {
     transform: translate3d(-300vw, 0, 0);
-    pointer-events:all;
+    pointer-events: all;
   }
-  
+
   body header nav ul li {
-    display:block;
+    display: block;
   }
 
   #toggle-mobile-nav {
