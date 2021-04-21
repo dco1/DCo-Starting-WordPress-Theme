@@ -60,7 +60,15 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   font-size: 1em;
+  font-weight: normal;
+  font-variation-settings: "wght" 320;
   line-height: 1.4;
+  tab-size: 4;
+  word-break: break-word;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 h1,
@@ -143,17 +151,6 @@ textarea {
   display: none !important;
   visibility: hidden;
 }
-hr.foot {
-  border: 0px;
-  clear: both;
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0px;
-  margin: 0;
-  padding: 0;
-  height: 0px;
-}
 
 /* Site Styling */
 
@@ -198,6 +195,7 @@ a:link {
 .alignright {
   float: right;
 }
+.center,
 .aligncenter {
   margin: 0 auto;
   display: block;
