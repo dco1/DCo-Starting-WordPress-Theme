@@ -8,10 +8,10 @@ if (! function_exists('dco_theme_setup_styles')) {
     {
         // Colors
         add_theme_support("disable-custom-colors");
-        add_theme_support("editor-color-palette", dco_wp_block_editor_custom_colors_setup());
+        //add_theme_support("editor-color-palette", dco_wp_block_editor_custom_colors_setup());
 
         // Font Sizes
-        add_theme_support("editor-font-sizes", dco_wp_block_editor_custom_font_sizes_setup());
+       // add_theme_support("editor-font-sizes", dco_wp_block_editor_custom_font_sizes_setup());
     }
 }
 

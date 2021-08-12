@@ -3,7 +3,7 @@
 define("THEME_LANGDOMAIN", "dco_theme");
 
 include('functions_base.php');
-include('functions_style.php');
+// include('functions_style.php'); // Removing the functions_style.php and drifting to theme.json
 
 
 add_filter('wp_get_environment_type', 'dco_theme_environment_type');
@@ -17,7 +17,7 @@ function dco_theme_environment_type($current_env)
 // Mobile Nav //
 ////////////////
 
-    // Adding a hamburger mobile nav menu item and cooresponding SVG reading code
+    // Adding a hamburger mobile nav menu item and corresponding SVG reading code
     add_filter('wp_nav_menu', 'dco_wp_nav_menu_for_adding_hamburger_menu_item', 10, 2);
     function dco_wp_nav_menu_for_adding_hamburger_menu_item($nav_menu, $args)
     {
@@ -69,14 +69,7 @@ function dco_theme_environment_type($current_env)
 // Block Editor //
 //////////////////
 
-    // Custom Colors
-    add_filter('dco_wp_block_editor_custom_colors', 'dco_theme_custom_colors', 1, 1);
-    function dco_theme_custom_colors($colors)
-    {
-        return array("Text Black" => "#333333");
-    }
-
-
+// Check theme.json
 
 ////////////////
 // Pagination //

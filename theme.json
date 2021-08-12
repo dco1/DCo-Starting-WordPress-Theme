@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "settings": {
+    "custom": {
+      "baseFont": 21,
+      "lineHeight": {
+        "small": 1.2,
+        "medium": 1.4,
+        "large": 1.8
+      }
+    },
+    "layout": {
+      "wideSize": "960px",
+      "contentSize": "680px"
+    },
+    "color": {
+      "custom": false,
+      "customGradient": true,
+      "gradients": [],
+      "link": false,
+      "palette": [
+        {
+          "slug": "text-black",
+          "color": "#424242"
+        },
+        {
+          "slug": "blue",
+          "color": "#070B28"
+        },
+        {
+          "slug": "teal",
+          "color": "#34A199"
+        },
+        {
+          "slug": "yellow",
+          "color": "#FCAB20"
+        },
+        {
+          "slug": "red",
+          "color": "#E73739"
+        }
+      ]
+    },
+    "spacing": {
+      "customMargin": false,
+      "customPadding": false,
+      "units": ["px", "em", "rem", "vh", "vw"]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell, \"Helvetica Neue\",sans-serif",
+          "slug": "system-font",
+          "name": "System Font"
+        },
+        {
+          "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+          "slug": "helvetica-arial",
+          "name": "Helvetica or Arial"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "normal",
+          "size": 21,
+          "name": "Normal"
+        },
+        {
+          "slug": "big",
+          "size": 32,
+          "name": "Big"
+        }
+      ]
+    },
+    "elements": {
+      "h1": {
+        "typography": {
+          "fontSize": "3rem"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "2.8rem"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "2.3rem"
+        }
+      }
+    }
+  }
+}

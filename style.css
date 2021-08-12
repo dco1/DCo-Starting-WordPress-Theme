@@ -8,7 +8,35 @@ Requires at least: 5.4
 
 */
 
-@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap");
+
+:root {
+  /* Main */
+  --main-background-color: #f2ebe3;
+  --main-text-color: #333333;
+  --main-link-color: #100dc5;
+  --main-font-size: 21px;
+  --main-content-width: 960px;
+  --main-font-family-serif: "Source Serif Pro", serif;
+  --main-font-family-sans-serif: "Epilogue";
+  /* Headline */
+  --headline-font-family: var(--main-font-family-sans-serif);
+  /* Content */
+  --content-bottom-margin: 2.5rem;
+  --content-font-family: var(--main-font-family-serif);
+  --content-content-width: 680px;
+  --content-font-weight: 300;
+  /* Footer */
+  --footer-background-color: #0420b0;
+  /* Form */
+  --form-background-color: #ffffff;
+  --form-font-color: var(--main-text-color);
+  --form-font-family: var(--main-font-family-serif);
+  /* Mobile Nav */
+  --mobile-nav-background-color: var(--main-text-color);
+  --mobile-nav-font-color: var(--main-background-color);
+}
 
 /* Resets and Boilerplates  */
 * {
@@ -154,24 +182,6 @@ textarea {
 
 /* Site Styling */
 
-:root {
-  /* Main */
-  --main-background-color: #ffffff;
-  --main-text-color: #333;
-  --main-link-color: #100dc5;
-  --main-font-size: 21px;
-  --main-content-width: 960px;
-  /* Headline */
-  --headline-font-family: "Helvetica";
-  /* Content */
-  --content-bottom-margin: 2.5rem;
-  --content-font-family: "Georgia";
-  --content-content-width: 680px;
-  --content-font-weight: 300;
-  /* Footer */
-  --footer-background-color: #e5e5e5;
-}
-
 ::-moz-selection {
   color: var(--main-background-color);
   background: var(--main-text-color);
@@ -221,7 +231,6 @@ body {
   background: var(--main-background-color);
   font-size: var(--main-font-size);
   font-family: var(--content-font-family);
-  letter-spacing: 0.012em;
 }
 
 h1,
@@ -236,22 +245,22 @@ h6 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: calc(2 * var(--main-font-size));
 }
 h2 {
-  font-size: 2.8rem;
+  font-size: calc(1.8 * var(--main-font-size));
 }
 h3 {
-  font-size: 2.3rem;
+  font-size: calc(1.4 * var(--main-font-size));
 }
 h4 {
-  font-size: 2rem;
+  font-size: calc(1.2 * var(--main-font-size));
 }
 h5 {
-  font-size: 1.7rem;
+  font-size: calc(1 * var(--main-font-size));
 }
 h6 {
-  font-size: 1.3rem;
+  font-size: calc(0.8 * var(--main-font-size));
 }
 
 /* Layout */
@@ -260,7 +269,7 @@ h6 {
 }
 
 section {
-  padding: 0 1.6rem;
+  padding: 0 calc(0.5 * var(--main-content-width));
   max-width: var(--main-content-width);
 }
 
@@ -277,10 +286,15 @@ header {
   display: flex;
 }
 
+header .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--content-bottom-margin) auto;
+}
+
 header h1 {
-  width: calc(100% - var(--content-bottom-margin));
-  font-size: 2rem;
-  margin-bottom: var(--content-bottom-margin);
+  margin-bottom: 0;
 }
 header h1 a {
   display: block;
@@ -290,23 +304,26 @@ header .header-menus {
   flex-grow: 1;
   justify-content: flex-end;
   display: flex;
-  flex-wrap: wrap;
 }
 
 header nav {
-  width: calc(100% - var(--content-bottom-margin));
 }
+
 header nav ul {
   display: flex;
   list-style: none;
+  align-content: space-between;
   justify-content: flex-start;
   margin-left: -10px; /* If the final nav is left aligned */
 }
+
 header nav li {
 }
+
 header nav a {
-  padding: 10px;
+  padding: calc(var(--main-font-size) / 2);
   color: var(--main-text-color);
+  display: block;
 }
 
 header #social-header-menu .logopath {
@@ -342,7 +359,8 @@ article {
   width: calc(100% - var(--content-bottom-margin));
 }
 .article-header .article-title {
-  font-size: 1.6rem;
+  font-size: calc(0.5 * var(--content-bottom-margin));
+  font-size: calc(1.4 * var(--main-font-size));
 }
 
 /* Article Content */
@@ -354,20 +372,32 @@ article {
   line-height: 1.75rem;
   font-weight: var(--content-font-weight);
 }
-.article-content p,
-.article-content ul,
-.article-content ol,
-.article-content blockquote,
-.article-content img {
+
+.article-content > :is(p, ul, ol, blockquote, img, dl, code, [class*="wp-block"]),
+.wp-block-column > :is(p, ul, ol, blockquote, img, dl, code, [class*="wp-block"]),
+.wp-block-group__inner-container > :is(p, ul, ol, blockquote, img, dl, code, [class*="wp-block"]) {
   margin-bottom: var(--content-bottom-margin);
 }
+
 .article-content p {
 }
-.article-content ul,
-.article-content ol {
+
+.article-content > ul,
+.article-content ul ul,
+.article-content > ol,
+.article-content ol ol {
   padding-left: var(--content-bottom-margin);
   box-sizing: border-box;
 }
+
+.article-content dl dt {
+  font-weight: bold;
+}
+
+.article-content dl dd + dt {
+  margin-top: calc(0.5 * var(--content-bottom-margin));
+}
+
 .article-content blockquote {
   font-family: serif;
   padding: 0 var(--content-bottom-margin);
@@ -390,7 +420,7 @@ article {
   line-height: 1.5;
 }
 
-/* Alignment Classes ------------------------- */
+/* Alignment Classes */
 
 .article-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
   max-width: var(--content-content-width);
@@ -400,6 +430,7 @@ article {
 
 [class*="__inner-container"] > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
   max-width: var(--main-content-width);
+  margin: 0 auto var(--content-bottom-margin);
   width: 100%;
 }
 
@@ -485,7 +516,7 @@ article {
   margin-right: var(--content-bottom-margin);
 }
 
-/* Entry Media ------------------------------- */
+/* Entry Media */
 
 .alignfull > figcaption,
 .alignfull > .wp-caption-text {
@@ -496,6 +527,12 @@ article {
 }
 
 /* Columns */
+
+/* Password Protected Posts */
+
+.post-password-form p label {
+  display: inline;
+}
 
 /* Article Footer */
 .article-footer {
@@ -529,6 +566,16 @@ article {
   background-color: var(--main-link-color);
 }
 
+/* Tables */
+
+table th {
+  white-space: pre;
+}
+
+table td {
+  padding: 2px;
+}
+
 /* Forms */
 
 form {
@@ -540,9 +587,15 @@ form label {
   display: block;
 }
 form input,
-form textarea {
-  font-family: inherit;
-  background: white;
+form textarea,
+form button {
+  font-family: var(--form-font-family);
+  background: var(--form-background-color);
+  padding: 0.375em 0.625em;
+  line-height: 1.7;
+  border: 2px solid var(--form-font-color);
+  color: var(--form-font-color);
+  border-radius: 2px;
 }
 form input[type="submit"] {
 }
@@ -554,7 +607,16 @@ footer {
   padding: var(--content-bottom-margin) 0;
 }
 
+footer a {
+  color: var(--main-background-color);
+}
+
+footer a:hover {
+  color: var(--main-background-color);
+}
+
 footer .footer-site-name {
+  text-transform: uppercase;
 }
 footer .footer-site-name a {
   margin-bottom: var(--content-bottom-margin);
@@ -571,15 +633,13 @@ footer nav ul li a {
 
 /* Media Queries */
 
-/* > 950px, 950px - 720px, < 720px , < 480px */
-
 @media (min-width: 950px) {
 }
 
-@media (max-width: 950px) and (min-width: 720px) {
+@media (max-width: 950px) and (min-width: 782px) {
 }
 
-@media (max-width: 720px) {
+@media (max-width: 782px) {
 }
 
 @media (max-width: 480px) {
@@ -602,25 +662,36 @@ footer nav ul li a {
   }
   header nav ul {
     display: flex;
-    font-size: 26px;
-    line-height: 1.7;
-    padding: 10px 20px;
     position: relative;
-    transition: all 0.3s ease;
-    left: 300vw;
-    background: rgba(0, 0, 0, 0.75);
+    background: var(--mobile-nav-background-color);
     overflow-y: scroll;
-    box-sizing: border-box;
-    right: 0px;
-    opacity: 0;
     transition: all 0.3s ease;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transform: translate3d(300vw, 0, 0);
     display: flex;
     flex-wrap: wrap;
     pointer-events: none;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    padding: 10px 20px;
   }
+
   body.navigationShown header nav ul {
-    transform: translate3d(-300vw, 0, 0);
+    transform: translate3d(-0vw, 0, 0);
     pointer-events: all;
+  }
+
+  body header nav ul li {
+    display: block;
+    font-size: calc(1.2 * var(--main-font-size));
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  body header nav ul li a {
+    color: var(--mobile-nav-font-color);
   }
 
   body header nav ul li {
@@ -633,7 +704,7 @@ footer nav ul li a {
     position: absolute;
     top: 0;
     right: 0;
-    line-height: 42px;
+    line-height: calc(2 * var(--main-font-size));
     vertical-align: middle;
     padding: 12px 20px;
     overflow: hidden;
@@ -647,7 +718,7 @@ footer nav ul li a {
     position: relative;
   }
   .navigationShown g#Hamburger line {
-    /* stroke:#fff; */
+    stroke: var(--mobile-nav-font-color);
     position: fixed;
   }
   .navigationShown g#Hamburger:hover {
