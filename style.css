@@ -23,7 +23,7 @@ Requires at least: 5.4
   /* Headline */
   --headline-font-family: var(--main-font-family-sans-serif);
   /* Content */
-  --content-bottom-margin: 2.5rem;
+  --content-bottom-margin: 2rem;
   --content-font-family: var(--main-font-family-serif);
   --content-content-width: 680px;
   --content-font-weight: 300;
@@ -231,6 +231,7 @@ body {
   background: var(--main-background-color);
   font-size: var(--main-font-size);
   font-family: var(--content-font-family);
+  scrollbar-gutter: stable both-edges; /* Why not */
 }
 
 h1,
@@ -369,14 +370,8 @@ article {
   clear: both;
   margin: 0 auto;
   font-size: var(--main-font-size);
-  line-height: 1.75rem;
+  line-height: calc(var(--main-font-size) * 1.75);
   font-weight: var(--content-font-weight);
-}
-
-.article-content > :is(p, ul, ol, blockquote, img, dl, code, [class*="wp-block"]),
-.wp-block-column > :is(p, ul, ol, blockquote, img, dl, code, [class*="wp-block"]),
-.wp-block-group__inner-container > :is(p, ul, ol, blockquote, img, dl, code, [class*="wp-block"]) {
-  margin-bottom: var(--content-bottom-margin);
 }
 
 .article-content p {
@@ -406,9 +401,12 @@ article {
 .article-content img {
   max-width: 100%;
 }
-.article-content p a {
+.article-content a {
   text-decoration: underline;
   color: var(--main-link-color);
+}
+.article-content a:hover {
+  text-decoration: none;
 }
 
 .article-content figure.wp-block-image img {
@@ -418,6 +416,10 @@ article {
   font-style: italic;
   font-size: 0.6em;
   line-height: 1.5;
+}
+
+.article-content > .more-link {
+  display: block;
 }
 
 /* Alignment Classes */
@@ -526,6 +528,13 @@ article {
   width: calc(100% - calc(2.5 * var(--content-bottom-margin)));
 }
 
+/* Button */
+
+.article-content a.wp-block-button__link {
+  color: var(--main-background-color);
+  text-decoration: none;
+}
+
 /* Columns */
 
 /* Password Protected Posts */
@@ -543,27 +552,31 @@ article {
 
 .navigation .content-wrapper {
   display: flex;
-  margin-top: var(--content-bottom-margin);
+  margin: var(--content-bottom-margin) auto;
+  max-width: 90vw;
+  position: relative;
+  width: calc(100% - var(--content-bottom-margin));
 }
 .navigation .content-wrapper span {
   flex-grow: 1;
 }
 .navigation .content-wrapper span.previous-page {
   text-align: left;
-  margin-left: -10px;
 }
 .navigation .content-wrapper span.next-page {
   text-align: right;
-  margin-right: -10px;
 }
 
 .navigation .content-wrapper span a {
-  padding: 10px;
-  transition: ease-out 0.3s background-color;
-  color: var(--main-text-color);
+  padding: calc(0.5 * var(--content-bottom-margin));
+  transition: ease-out 0.3s all;
+  color: var(--main-link-color);
+  border-radius: 2px;
+  font-family: var(--content-font-family);
 }
 .navigation .content-wrapper span a:hover {
   background-color: var(--main-link-color);
+  color: var(--main-background-color);
 }
 
 /* Tables */
@@ -640,6 +653,15 @@ footer nav ul li a {
 }
 
 @media (max-width: 782px) {
+  header .wrapper {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  header .header-menus,
+  header nav ul {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
