@@ -88,6 +88,13 @@
           "fontSize": "2.3rem"
         }
       }
+    },
+    "blocks": {
+      "core/button": {
+        "color": {
+          "custom": true
+        }
+      }
     }
   }
 }
