@@ -174,6 +174,11 @@
 // Disable XML-RPC
 
 add_filter('xmlrpc_enabled', '__return_false');
+add_filter( 'xmlrpc_methods', 'remove_xmlrpc_methods' );
+
+function remove_xmlrpc_methods( $methods ) {
+  return array();
+}
 
 /* Remove all those extra links in the header */
     remove_action('wp_head', 'rsd_link');
